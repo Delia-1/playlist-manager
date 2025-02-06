@@ -88,7 +88,7 @@ export default function Main() {
           <p>* Please add at least 3 keywords 🍎</p> }
         </div>
         <ul className="listPartList">{keywordsList}</ul>
-          {list.length > 3 && (
+          {list.length > 2 && (
             <button onClick={togglePlaylist} className="button-submit">
               Generate Playlist
             </button>

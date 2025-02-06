@@ -1,6 +1,4 @@
-// import path from 'path';
-// import { fileURLToPath } from 'url';
-import express from 'express';
+import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import Anthropic from '@anthropic-ai/sdk';
@@ -9,7 +7,6 @@ import rateLimit from 'express-rate-limit';
 dotenv.config();
 
 const app = express();
-// const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PORT = process.env.PORT || 3000;
 
 const anthropic = new Anthropic({
@@ -32,14 +29,25 @@ const limiter = rateLimit({
   headers: true, // Show rate limit info in response headers
 });
 
+// Define the structure of the response content
+interface ContentBlock {
+  text?: string;
+  message?: string;
+}
+
+interface ApiResponse {
+  content: ContentBlock[];
+}
+
 // ✅ Apply rate limiting **ONLY** to the `/get-recipe` route
-app.post('/', limiter, async (req, res) => {
+app.post('/', limiter, async (req: Request, res: Response): Promise<void> => {
   const { keywords } = req.body;
 
-
   if (!keywords || !Array.isArray(keywords)) {
-    return res.status(400).json({ error: 'Invalid keyword format' });
+    res.status(400).json({ error: 'Invalid keyword format' });
+    return;
   }
+
   const SYSTEM_PROMPT = `
 You are a music assistant creating playlists based on a user's activity, mood, and/or music taste.
 - Match the energy of the activity.
@@ -49,7 +57,6 @@ You are a music assistant creating playlists based on a user's activity, mood, a
 - Return only the playlist as an array with an array for each song-artist pair eg: [["Technobron", "Slam"], ["Intruder", "The Chemical Brothers"]] no "" or '' around.
 - No introduction or final words.
 `;
-
 
   try {
     const msg = await anthropic.messages.create({
@@ -64,13 +71,27 @@ You are a music assistant creating playlists based on a user's activity, mood, a
       ],
     });
 
-    const playlistString = msg.content[0].text;
+    // Assuming msg.content is an array of objects, find the correct property
+    const firstContent = msg.content[0] as ContentBlock;
+
+    let playlistString = '';
+
+    if ('text' in firstContent) {
+      playlistString = firstContent.text!;
+    } else if ('message' in firstContent) {
+      playlistString = firstContent.message!;
+    } else {
+      res.status(500).json({ error: 'Unexpected API response format' });
+      return;
+    }
+
     let playlistArray;
 
     try {
       playlistArray = JSON.parse(playlistString);
     } catch (error) {
-      return res.status(500).json({ error: 'Failed to parse playlist' });
+      res.status(500).json({ error: 'Failed to parse playlist' });
+      return;
     }
 
     res.json({ playlist: playlistArray });
@@ -80,8 +101,6 @@ You are a music assistant creating playlists based on a user's activity, mood, a
   }
 });
 
-
-// ✅ Start the server Locally
 app.listen(PORT, () => {
-  console.log(`Backend running at http://localhost:${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
