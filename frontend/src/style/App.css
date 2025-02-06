@@ -55,7 +55,7 @@ html, body {
 
 
 
-/* FORM ADD INGREDIENTS */
+/* FORM ADD KEYWORDS */
 
 form {
   display: flex;
@@ -65,7 +65,7 @@ form {
   margin-top: 40px;
 }
 
-.ingredients-input {
+.keywords-input {
   padding: 0.5rem 1rem;
   border-radius: 5px;
   border: 1px solid #143b77;
@@ -78,7 +78,7 @@ form {
     flex-direction: column ;
   }
 
-  .ingredients-input {
+  .keywords-input {
     font-size: 1rem;
     width: 19rem;
   }
@@ -96,9 +96,9 @@ form {
 }
 
 
-/* OUTPUT INGREDIENTS + SEARCH */
+/* OUTPUT KEYWORDS + SEARCH */
 
-.ingredients-section {
+.keywords-section {
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -156,7 +156,7 @@ form {
 
 
   @media screen and (max-width: 400px) {
-    .ingredients-section {
+    .keywords-section {
       flex-direction: column;
       margin: 2rem 0.3rem;
       width: 19rem;

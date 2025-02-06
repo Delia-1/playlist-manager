@@ -9,7 +9,7 @@ export default function Header() {
 
     <header>
       <FontAwesomeIcon className="ust-icon"icon={faUtensils} />
-      <h3 className="header-title">Cheffe Délia</h3>
+      <h3 className="header-title">Dj Claude</h3>
     </header>
     </nav>
   )

@@ -1,27 +1,27 @@
 import React from "react";
-import Recipe from "./Recipe.jsx";
+import PlaylistCompo from "./PlaylistCompo.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import { getRecipeFromChefClaude } from "./ai.js";
+import { getPlaylistFromDjClaude } from "./ai.js";
 
 export default function Main() {
-  const [list, setList] = React.useState(["Milk", "Butter", "Sugar"]);
-  const [recipe, setRecipe] = React.useState("");
+  const [list, setList] = React.useState(["Techno", "Coding", "powerfull"]);
+  const [playlist, setPlaylist] = React.useState([]);
   const [hover, setHover] = React.useState(false);
 
 
-  // handle the form submission and add an ingredient to the list
-  function addIngredient(event) {
+  // handle the form submission and add a keyword to the list
+  function addKeyword(event) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    const ingredient = formData.get("ingredient");
-    if (ingredient) {
-      setList((prevList) => [...prevList, ingredient]);
+    const keyword = formData.get("keyword");
+    if (keyword) {
+      setList((prevList) => [...prevList, keyword]);
     }
     event.currentTarget.reset();
   }
 
-  // handle the removal of an ingredient from the list
+  // handle the removal of a keyword from the list
   function handleCancelItem(item) {
     setList((prevList) => prevList.filter((element) => element !== item));
   }
@@ -35,19 +35,19 @@ export default function Main() {
     setHover(false);
   }
 
-  // async function to call the AI function to get a recipe from the list of ingredients
-  async function toggleRecipe() {
+  // async function to call the AI function to get a palyslist from the list of keywords
+  async function togglePlaylist() {
     try {
-      const recipe = await getRecipeFromChefClaude(list);
-      console.log("Recipe fetched:", recipe);
-      setRecipe(recipe); // Update recipeGenerated state
+      const playlist = await getPlaylistFromDjClaude(list);
+      console.log("Playlist fetched:", playlist);
+      setPlaylist(playlist); // Update playlistGenerated state
     } catch (error) {
-      console.error("Error fetching recipe:", error);
+      console.error("Error fetching playlist:", error);
     }
   }
 
-  // map the list of ingredients to a list of JSX elements
-  const ingredientsList = list.map((item, index) => (
+  // map the list of keywords to a list of JSX elements
+  const keywordsList = list.map((item, index) => (
     <div className="div-list-cancel" key={index}>
       <li className="listPartItem">{item}</li>
       <FontAwesomeIcon
@@ -64,39 +64,40 @@ export default function Main() {
 
   return (
     <>
-      <form onSubmit={addIngredient}>
+      <form onSubmit={addKeyword}>
         <input
-          className="ingredients-input"
+          className="keywords-input"
           type="text"
-          placeholder="e.g. Eggs"
-          name="ingredient"
+          placeholder="e.g. Musical"
+          name="keyword"
         />
         <input
           className="button-submit"
           type="submit"
-          value="+ Add ingredient"
+          value="+ Add keyword"
         />
       </form>
 
-      {ingredientsList.length !== 0 &&  (
-        <section className="ingredients-section">
+      {keywordsList.length !== 0 &&  (
+        <section className="keywords-section">
                 <section className="listPart">
-        <h2 className="listPartText">Ingredients on hand:</h2>
+        <h2 className="listPartText">Mood of the moment:</h2>
         <div style={{margin: "0.3rem 0"}}>
 
-        {ingredientsList.length < 4 &&
-          <p>* Please add at least 4 ingredients 🍎</p> }
+        {keywordsList.length < 3 &&
+          <p>* Please add at least 3 keywords 🍎</p> }
         </div>
-        <ul className="listPartList">{ingredientsList}</ul>
+        <ul className="listPartList">{keywordsList}</ul>
           {list.length > 3 && (
-            <button onClick={toggleRecipe} className="button-submit">
-              Find recipe
+            <button onClick={togglePlaylist} className="button-submit">
+              Generate Playlist
             </button>
           )}
       </section>
       </section>)}
 
-      {recipe && <Recipe  recipe={recipe} />}
+      {playlist && <PlaylistCompo  playlist={playlist} />
+      }
 
     </>
   );

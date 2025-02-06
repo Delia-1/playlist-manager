@@ -34,14 +34,20 @@ const limiter = rateLimit({
 
 // ✅ Apply rate limiting **ONLY** to the `/get-recipe` route
 app.post('/', limiter, async (req, res) => {
-  const { ingredients } = req.body;
+  const { keywords } = req.body;
 
 
-  if (!ingredients || !Array.isArray(ingredients)) {
-    return res.status(400).json({ error: 'Invalid ingredients format' });
+  if (!keywords || !Array.isArray(keywords)) {
+    return res.status(400).json({ error: 'Invalid keyword format' });
   }
   const SYSTEM_PROMPT = `
-You are an assistant that receives a list of ingredients that a user has and suggests a recipe they could make with some or all of those ingredients. You don't need to use every ingredient they mention in your recipe. The recipe can include additional ingredients they didn't mention, but try not to include too many extra ingredients. Format your response in markdown to make it easier to render to a web page, NO additional text for introduce the recipe, NO conclusion.
+You are a music assistant creating playlists based on a user's activity, mood, and/or music taste.
+- Match the energy of the activity.
+- Reflect the user's mood.
+- Stay within the music genre preference but add variety.
+- Include a mix of popular hits and hidden gems.
+- Return only the playlist as an array with an array for each song-artist pair eg: [["Technobron", "Slam"], ["Intruder", "The Chemical Brothers"]] no "" or '' around.
+- No introduction or final words.
 `;
 
 
@@ -53,15 +59,24 @@ You are an assistant that receives a list of ingredients that a user has and sug
       messages: [
         {
           role: 'user',
-          content: `I have ${ingredients.join(', ')}. Please give me a recipe you'd recommend I make! please no introduction or final sentence`,
+          content: `Here are my keywords describing activity, mood, and/or genre: ${keywords.join(', ')} Please generate a music playlist that fits. Format response as an array eg: [["Technobron", "Slam"], ["Intruder", "The Chemical Brothers"]] no "" or '' around.`,
         },
       ],
     });
 
-    res.json({ recipe: msg.content[0].text });
+    const playlistString = msg.content[0].text;
+    let playlistArray;
+
+    try {
+      playlistArray = JSON.parse(playlistString);
+    } catch (error) {
+      return res.status(500).json({ error: 'Failed to parse playlist' });
+    }
+
+    res.json({ playlist: playlistArray });
   } catch (error) {
-    console.error('Error fetching recipe:', error);
-    res.status(500).json({ error: 'Failed to fetch recipe' });
+    console.error('Error fetching playlist:', error);
+    res.status(500).json({ error: 'Failed to fetch playlist' });
   }
 });
 
