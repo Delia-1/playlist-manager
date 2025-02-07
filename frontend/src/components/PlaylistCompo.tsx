@@ -1,10 +1,12 @@
+import React from 'react'
 import "../style/PlaylistCompo.css"
-import PropTypes from "prop-types";
 // import ReactMarkdown from "react-markdown";
 
+interface PlaylistProps {
+  playlist: [string, string][];
+}
 
-
-export default function Playlist({playlist}) {
+const  PlaylistCompo: React.FC<PlaylistProps> = ({playlist})  =>{
 console.log( "here is what i want to retrieve",   playlist)
 
 
@@ -25,7 +27,7 @@ console.log( "here is what i want to retrieve",   playlist)
                 </li>
               );
             } else {
-              return null; 
+              return null;
             }
           })}
         </ul>
@@ -36,6 +38,4 @@ console.log( "here is what i want to retrieve",   playlist)
   );
 }
 
-Playlist.propTypes = {
-  playlist: PropTypes.array.isRequired,
-};
+export default PlaylistCompo;

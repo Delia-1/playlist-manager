@@ -1,20 +1,20 @@
-import React from "react";
-import PlaylistCompo from "./PlaylistCompo.jsx";
+import React, {useState, FormEvent} from "react";
+import PlaylistCompo from "./PlaylistCompo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import { getPlaylistFromDjClaude } from "./ai.js";
+import { getPlaylistFromDjClaude } from "./ai";
 
 export default function Main() {
-  const [list, setList] = React.useState(["Techno", "Coding", "powerfull"]);
-  const [playlist, setPlaylist] = React.useState([]);
-  const [hover, setHover] = React.useState(false);
+  const [list, setList] = React.useState<string[]>(["Techno", "Coding", "powerfull"]);
+  const [playlist, setPlaylist] = React.useState<[string, string][]>([]);
+  const [hover, setHover] = React.useState<string | null>(null);
 
 
   // handle the form submission and add a keyword to the list
-  function addKeyword(event) {
+  function addKeyword(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    const keyword = formData.get("keyword");
+    const keyword = formData.get("keyword") as string;
     if (keyword) {
       setList((prevList) => [...prevList, keyword]);
     }
@@ -22,17 +22,17 @@ export default function Main() {
   }
 
   // handle the removal of a keyword from the list
-  function handleCancelItem(item) {
+  function handleCancelItem(item: string) {
     setList((prevList) => prevList.filter((element) => element !== item));
   }
 
   // function to handle the bounce effect when hovering over the trash icon
-  function toggleBounce(item) {
+  function toggleBounce(item: string) {
     setHover(item);
   }
 
   function removeBounce() {
-    setHover(false);
+    setHover(null);
   }
 
   // async function to call the AI function to get a palyslist from the list of keywords
@@ -63,7 +63,7 @@ export default function Main() {
 
 
   return (
-    <>
+    < main className="main-content">
       <form onSubmit={addKeyword}>
         <input
           className="keywords-input"
@@ -99,6 +99,6 @@ export default function Main() {
       {playlist && <PlaylistCompo  playlist={playlist} />
       }
 
-    </>
+    </main>
   );
 }

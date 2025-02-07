@@ -1,3 +1,4 @@
+import React from 'react'
 import './style/App.css'
 import Header from './components/Header'
 import Main from './components/Main'
@@ -12,7 +13,7 @@ function App() {
     <div className="app">
       <Header />
     <nav className="stupid-nav">
-      <Main className="main-content" />
+      <Main  />
     </nav>
       <Footer/>
     </div>
