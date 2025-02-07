@@ -3,11 +3,13 @@ import PlaylistCompo from "./PlaylistCompo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { getPlaylistFromDjClaude } from "./ai";
+import ClipLoader from "react-spinners/ClipLoader";
 
 export default function Main() {
   const [list, setList] = React.useState<string[]>(["Techno", "Coding", "powerfull"]);
   const [playlist, setPlaylist] = React.useState<[string, string][]>([]);
   const [hover, setHover] = React.useState<string | null>(null);
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   // handle the form submission and add a keyword to the list
   function addKeyword(event: FormEvent<HTMLFormElement>) {
@@ -25,7 +27,7 @@ export default function Main() {
     setList((prevList) => prevList.filter((element) => element !== item));
   }
 
-  // function to handle the bounce effect when hovering over the trash icon
+  // functions to handle the bounce effect when hovering over the trash icon
   function toggleBounce(item: string) {
     setHover(item);
   }
@@ -35,13 +37,17 @@ export default function Main() {
   }
 
   // async function to call the AI function to get a palyslist from the list of keywords
+  // handle the state for the loader
   async function togglePlaylist() {
+    setIsLoading(true);
     try {
       const playlist = await getPlaylistFromDjClaude(list);
       console.log("Playlist fetched:", playlist);
       setPlaylist(playlist); // Update playlistGenerated state
     } catch (error) {
       console.error("Error fetching playlist:", error);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -70,15 +76,22 @@ export default function Main() {
         <section className="keywords-section">
           <section className="listPart">
             <h2 className="listPartText">Mood of the moment:</h2>
-            <div style={{ margin: "0.3rem 0" }}>
+            {/* <div style={{ margin: "0.3rem 0" }}>
+            </div> */}
               {keywordsList.length < 3 && <p>* Please add at least 3 keywords 🍎</p>}
-            </div>
             <ul className="listPartList">{keywordsList}</ul>
             {list.length > 2 && (
+              <>
               <button onClick={togglePlaylist} className="button-submit">
                 Generate Playlist
               </button>
-            )}
+              {isLoading &&
+                <div className="loader-container">
+                <ClipLoader color="#ff5722" loading={isLoading} size={50} />
+                <p className="loading-text">🎵 Crafting your sound...</p>
+              </div>}
+            </>
+          )}
           </section>
         </section>
       )}

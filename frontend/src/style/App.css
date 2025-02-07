@@ -34,9 +34,12 @@ body {
 }
 
 .main-content {
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+/* FORM ADD KEYWORDS */
 .button-submit {
   background-image: linear-gradient(262deg, #143c77, #05295e);
   color: white;
@@ -55,8 +58,22 @@ body {
 
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
 }
+.loading-text {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ff5722;
+  animation: blink 1.2s infinite;
+}
 
-/* FORM ADD KEYWORDS */
+
+
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
 
 form {
   display: flex;
@@ -170,8 +187,5 @@ form {
     font-size: 1.5rem;
     top: -18px;
     left: 10px;
-  }
-  .listPartList {
-    margin-right: 20px;
   }
 }
