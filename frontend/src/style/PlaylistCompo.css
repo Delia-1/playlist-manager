@@ -10,12 +10,12 @@
   padding: 1rem 2rem;
 }
 
-.suggested-playlist-container ul li, .suggested-playlist-container ol li {
-    margin-bottom: 0.3rem;
-    padding: 0.4rem;
-    border-radius: 5px;
-    font-weight: bold;
-
+.suggested-playlist-container ul li,
+.suggested-playlist-container ol li {
+  margin-bottom: 0.3rem;
+  padding: 0.4rem;
+  border-radius: 5px;
+  font-weight: bold;
 }
 
 .suggested-playlist-container ul {
@@ -31,7 +31,7 @@
 
 .suggested-playlist-container h2 {
   font-size: 1.5rem;
-  color: #C1292E;
+  color: #c1292e;
 }
 .suggested-playlist-container h1 {
   font-size: 1.5rem;
@@ -50,26 +50,22 @@
     font-size: 1.125rem;
     font-weight: 400;
     margin-left: 1.5rem;
-}
+  }
   .suggested-playlist-container ul {
     grid-template-columns: 1fr; /* Single column layout */
   }
 
+  .suggested-playlist-container p {
+    font-size: 1.3rem;
+  }
 
+  .suggested-playlist-container h2 {
+    font-size: 1.3rem;
+  }
 
-.suggested-playlist-container p {
-  font-size: 1.3rem;
-}
-
-.suggested-playlist-container h2 {
-  font-size: 1.3rem;
-}
-
-.suggested-playlist-container h1 {
-  font-size: 1.5rem;
-  margin-left: 30px;
-  color: #C1292E;
-
-}
-
+  .suggested-playlist-container h1 {
+    font-size: 1.5rem;
+    margin-left: 30px;
+    color: #c1292e;
+  }
 }

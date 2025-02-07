@@ -1,16 +1,13 @@
-import React from 'react'
-import "../style/PlaylistCompo.css"
+import React from "react";
+import "../style/PlaylistCompo.css";
 // import ReactMarkdown from "react-markdown";
 
 interface PlaylistProps {
   playlist: [string, string][];
 }
 
-const  PlaylistCompo: React.FC<PlaylistProps> = ({playlist})  =>{
-console.log( "here is what i want to retrieve",   playlist)
-
-
-
+const PlaylistCompo: React.FC<PlaylistProps> = ({ playlist }) => {
+  console.log("here is what i want to retrieve", playlist);
 
   return (
     <section className="suggested-playlist-container" aria-live="polite">
@@ -23,7 +20,10 @@ console.log( "here is what i want to retrieve",   playlist)
 
               return (
                 <li key={index} className="playlist-item">
-                  <strong>{index + 1}. {title}</strong> - <em>{artist}</em>
+                  <strong>
+                    {index + 1}. {title}
+                  </strong>{" "}
+                  - <em>{artist}</em>
                 </li>
               );
             } else {
@@ -36,6 +36,6 @@ console.log( "here is what i want to retrieve",   playlist)
       )}
     </section>
   );
-}
+};
 
 export default PlaylistCompo;

@@ -1,4 +1,4 @@
-import React, {useState, FormEvent} from "react";
+import React, { useState, FormEvent } from "react";
 import PlaylistCompo from "./PlaylistCompo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
@@ -8,7 +8,6 @@ export default function Main() {
   const [list, setList] = React.useState<string[]>(["Techno", "Coding", "powerfull"]);
   const [playlist, setPlaylist] = React.useState<[string, string][]>([]);
   const [hover, setHover] = React.useState<string | null>(null);
-
 
   // handle the form submission and add a keyword to the list
   function addKeyword(event: FormEvent<HTMLFormElement>) {
@@ -60,45 +59,31 @@ export default function Main() {
     </div>
   ));
 
-
-
   return (
-    < main className="main-content">
+    <main className="main-content">
       <form onSubmit={addKeyword}>
-        <input
-          className="keywords-input"
-          type="text"
-          placeholder="e.g. Musical"
-          name="keyword"
-        />
-        <input
-          className="button-submit"
-          type="submit"
-          value="+ Add keyword"
-        />
+        <input className="keywords-input" type="text" placeholder="e.g. Musical" name="keyword" />
+        <input className="button-submit" type="submit" value="+ Add keyword" />
       </form>
 
-      {keywordsList.length !== 0 &&  (
+      {keywordsList.length !== 0 && (
         <section className="keywords-section">
-                <section className="listPart">
-        <h2 className="listPartText">Mood of the moment:</h2>
-        <div style={{margin: "0.3rem 0"}}>
+          <section className="listPart">
+            <h2 className="listPartText">Mood of the moment:</h2>
+            <div style={{ margin: "0.3rem 0" }}>
+              {keywordsList.length < 3 && <p>* Please add at least 3 keywords 🍎</p>}
+            </div>
+            <ul className="listPartList">{keywordsList}</ul>
+            {list.length > 2 && (
+              <button onClick={togglePlaylist} className="button-submit">
+                Generate Playlist
+              </button>
+            )}
+          </section>
+        </section>
+      )}
 
-        {keywordsList.length < 3 &&
-          <p>* Please add at least 3 keywords 🍎</p> }
-        </div>
-        <ul className="listPartList">{keywordsList}</ul>
-          {list.length > 2 && (
-            <button onClick={togglePlaylist} className="button-submit">
-              Generate Playlist
-            </button>
-          )}
-      </section>
-      </section>)}
-
-      {playlist && <PlaylistCompo  playlist={playlist} />
-      }
-
+      {playlist && <PlaylistCompo playlist={playlist} />}
     </main>
   );
 }

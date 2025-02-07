@@ -1,5 +1,6 @@
 /* GENERAL */
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -13,7 +14,9 @@ html, body {
   flex-direction: column;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: inherit;
 }
 
@@ -21,7 +24,6 @@ html, body {
   flex-grow: 1;
   margin: 0px 70px;
   background-color: #f9f9f9;
-
 }
 
 .app {
@@ -42,18 +44,17 @@ html, body {
   border-radius: 5px;
   font-size: 1.1rem;
   height: fit-content;
-  transition: transform 0.3s ease, background-image 0.5s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    background-image 0.5s ease,
+    box-shadow 0.3s ease;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
+.button-submit:hover {
+  background-image: linear-gradient(307deg, #143c77, #05295e);
 
-  }
-  .button-submit:hover {
-    background-image: linear-gradient(307deg, #143c77, #05295e);
-
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
-  }
-
-
-
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+}
 
 /* FORM ADD KEYWORDS */
 
@@ -71,11 +72,11 @@ form {
   border: 1px solid #143b77;
   width: 34%;
   font-size: 19px;
-  margin-left: 0.2rem
-  }
+  margin-left: 0.2rem;
+}
 @media screen and (max-width: 400px) {
   form {
-    flex-direction: column ;
+    flex-direction: column;
   }
 
   .keywords-input {
@@ -83,18 +84,16 @@ form {
     width: 19rem;
   }
 
-  .button-submit{
+  .button-submit {
     margin-right: 10%;
     font-size: 1rem;
-   }
-   .stupid-nav {
+  }
+  .stupid-nav {
     flex-grow: 1;
     margin: 0;
-    background-color: #c7b3af17
-
+    background-color: #c7b3af17;
   }
 }
-
 
 /* OUTPUT KEYWORDS + SEARCH */
 
@@ -118,8 +117,6 @@ form {
     flex-direction: column;
   }
 
-
-
   .listPartItem {
     width: 3rem;
     margin: 0.8rem 2.5rem;
@@ -130,11 +127,13 @@ form {
     margin-bottom: 0;
   }
 
-  .div-list-cancel{
+  .div-list-cancel {
     display: flex;
     align-items: center;
     border-bottom: 1px solid black;
-    transition: height 1s ease-in-out, margin 0.3s ease-in-out;
+    transition:
+      height 1s ease-in-out,
+      margin 0.3s ease-in-out;
   }
 }
 .listPartList {
@@ -151,29 +150,26 @@ form {
   font-size: 2rem;
   font-weight: bold;
   z-index: 1;
-  color: #C1292E;
+  color: #c1292e;
 }
 
+@media screen and (max-width: 400px) {
+  .keywords-section {
+    flex-direction: column;
+    margin: 2rem 0.3rem;
+    width: 19rem;
+    padding: 0.5rem;
+  }
 
-  @media screen and (max-width: 400px) {
-    .keywords-section {
-      flex-direction: column;
-      margin: 2rem 0.3rem;
-      width: 19rem;
-      padding: 0.5rem;
-    }
+  .listPartItem {
+    width: 100px;
+    margin: 10px 30px;
+  }
 
-    .listPartItem {
-      width: 100px;
-      margin: 10px 30px ;
-
-    }
-
-    .listPartText{
-      font-size: 1.5rem;
-      top: -18px;
-      left: 10px;
-
+  .listPartText {
+    font-size: 1.5rem;
+    top: -18px;
+    left: 10px;
   }
   .listPartList {
     margin-right: 20px;

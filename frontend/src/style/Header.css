@@ -1,47 +1,42 @@
-
 .header-container {
   top: 0; /* Aligns it to the top of the page */
   left: 0; /* Spans the entire width of the page */
   z-index: 1000; /* Ensures it stays above other content */
   display: flex;
   align-items: center; /* Aligns items vertically */
-  background-color: #C1292E;
+  background-color: #c1292e;
   color: #fcd53f;
-  box-shadow:  0px 3px 4px -1px rgb(0 0 0 / 28%);
+  box-shadow: 0px 3px 4px -1px rgb(0 0 0 / 28%);
   justify-content: center;
   width: 100%;
   height: 4.5rem;
   justify-content: center;
-
 }
 
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%; /* Ensure the header spans the full width */
-    height: 100%; /* Makes it fill the parent */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%; /* Ensure the header spans the full width */
+  height: 100%; /* Makes it fill the parent */
+}
 
-  }
+.ust-icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
 
-  .ust-icon{
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
-  }
+.header-title {
+  font-family: "Nunito";
+  font-weight: 300;
+  padding: 0;
+  margin: 0;
+  font-size: 2.8rem;
+}
 
+@media (max-width: 320px) {
   .header-title {
-    font-family: "Nunito";
-    font-weight: 300 ;
-    padding: 0;
-    margin: 0;
-    font-size: 2.8rem;
-
+    font-size: 2rem;
   }
-
-
-  @media (max-width: 320px) {
-    .header-title {
-      font-size: 2rem;
-    }
-  }
+}
