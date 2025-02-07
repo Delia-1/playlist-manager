@@ -1,71 +1,79 @@
-.suggested-playlist-container {
-  color: #212c3c;
+.playlist-container {
+  color: var(--text-color);
   line-height: 1.7rem;
   font-size: 1.125rem;
   font-weight: 400;
   margin: 1rem 2rem;
-  background-color: #123a7414;
-  border: 1px solid #143b77;
+  background-color: var(--bg-playlist);
   border-radius: 4px;
   padding: 1rem 2rem;
+  box-shadow:
+  0 1px 3px var(--box-shadow-1),
+  0 10px 30px var(--box-shadow-2),
+  0 5px 20px var(--box-shadow-3);
 }
 
-.suggested-playlist-container ul li,
-.suggested-playlist-container ol li {
+
+
+.playlist-container ul li,
+.playlist-container ol li {
   margin-bottom: 0.3rem;
   padding: 0.4rem;
   border-radius: 5px;
   font-weight: bold;
 }
 
-.suggested-playlist-container ul {
+.playlist-container ul {
   display: grid;
   grid-template-columns: repeat(2, 40%);
-  column-gap: 10 px; /* Space between columns */
+  column-gap: 7rem;
   padding: 0;
+  list-style: none;
 }
 
-.suggested-playlist-container p {
+.playlist-container p {
   font-size: 1.5rem;
 }
 
-.suggested-playlist-container h2 {
+.playlist-container h2 {
   font-size: 1.5rem;
-  color: #c1292e;
+
 }
-.suggested-playlist-container h1 {
+
+.playlist-container h1 {
   font-size: 1.5rem;
   font-style: italic;
+  color: var(--button-bg-clear);
 }
 
-.suggested-playlist-container h1 {
+.playlist-container h1 {
   font-size: 1.7rem;
   margin-left: 1rem;
   font-style: italic;
 }
 
+
 @media screen and (max-width: 400px) {
-  .suggested-playlist-container {
+  .playlist-container {
     line-height: 1.2rem;
     font-size: 1.125rem;
     font-weight: 400;
     margin-left: 1.5rem;
   }
-  .suggested-playlist-container ul {
+  .playlist-container ul {
     grid-template-columns: 1fr; /* Single column layout */
   }
 
-  .suggested-playlist-container p {
+  .playlist-container p {
     font-size: 1.3rem;
   }
 
-  .suggested-playlist-container h2 {
+  .playlist-container h2 {
     font-size: 1.3rem;
   }
 
-  .suggested-playlist-container h1 {
+  .playlist-container h1 {
     font-size: 1.5rem;
     margin-left: 30px;
-    color: #c1292e;
   }
 }

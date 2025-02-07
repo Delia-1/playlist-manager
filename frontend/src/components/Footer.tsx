@@ -14,7 +14,7 @@ function Footer() {
           <i className="fab fa-linkedin"></i>
         </a>
       </div>
-      <div className="footer-copyright">This playlist generator is made with 💖 by Délia</div>
+      <div className="footer-copyright">Playlist generator, made with 💖 by Délia</div>
     </div>
   );
 }
