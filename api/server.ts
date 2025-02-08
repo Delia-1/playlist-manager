@@ -3,25 +3,126 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import Anthropic from '@anthropic-ai/sdk';
 import rateLimit from 'express-rate-limit';
+import { ApolloServer, BaseContext } from '@apollo/server';
+import { expressMiddleware } from '@apollo/server/express4';
+import { GraphQLObjectType, GraphQLSchema, GraphQLString, GraphQLList } from 'graphql';
+import  fetch  from 'node-fetch';
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
-});
-
 // Enable CORS
 app.use(cors());
 
 app.use(express.json());
 
-// Serve the static files from the frontend dist folder
-// app.use(express.static(path.join(__dirname, '../frontend/dist')));
+// GRAPHQL PART!!!!
 
-// ✅ Define Rate Limiting Middleware
+// To def GraphQL Schema
+const SongType = new GraphQLObjectType({
+  name: 'Song',
+  fields: {
+    title: {type: GraphQLString},
+    artist:{type: GraphQLString},
+    cover: {type: GraphQLString},
+    url: {type: GraphQLString},
+  }
+})
+
+interface DeezerResponse {
+  data: {
+    album: {
+      cover_medium: string;
+    };
+    link: string;
+  }[];
+}
+
+function isDeezerResponse(data: any): data is DeezerResponse {
+  return (
+    data &&
+    Array.isArray(data.data) &&
+    data.data.every((item: any) => item.album && typeof item.album.cover_medium === 'string' && typeof item.link === 'string')
+  );
+}
+
+
+const RootQuery = new GraphQLObjectType({
+  name: 'RootQueryType',
+  fields: {
+    getCoverFromDeezerApi: {
+      type: new GraphQLList(SongType),
+      args: {
+        songTitles: { type: new GraphQLList(GraphQLString) },
+        artists: { type: new GraphQLList(GraphQLString) },
+      },
+      async resolve(_, { songTitles, artists }) {
+        if (!songTitles || !artists || songTitles.length !== artists.length) {
+          throw new Error('Invalid song or artists 🤐');
+        }
+
+        const results = await Promise.all(
+          songTitles.map(async (title: string, index: number) => {
+            const artist = artists[index];
+
+            try {
+              const response = await fetch(
+                `http://api.deezer.com/search?q=${encodeURIComponent(title)} ${encodeURIComponent(artist)}`
+              );
+              const data: unknown = await response.json();
+
+              console.log("Deezer API Response for:", title, artist, data);
+
+              if (isDeezerResponse(data)) {
+                return {
+                  title,
+                  artist,
+                  cover: data.data[0].album.cover_medium,
+                  url: data.data[0].link || "",
+                };
+              } else {
+                return { title, artist, cover: "", url: "" };
+              }
+            } catch (error) {
+              console.error("Error fetching song cover:", error);
+              return { title, artist, cover: "", url: "" };
+            }
+          })
+        );
+
+        return results;
+      },
+    },
+  },
+});
+
+const schema = new GraphQLSchema({
+  query: RootQuery,
+});
+
+const server = new ApolloServer<BaseContext>({
+  schema,
+});
+
+(async () => {
+  await server.start();
+  app.use('/graphql', expressMiddleware(server) as any);
+
+
+ app.listen(PORT, () => {
+  console.log(`🚀 Backend running at http://localhost:${PORT}/graphql`);
+ });
+})();
+
+// ANTHROPIC CALLS
+
+const anthropic = new Anthropic({
+  apiKey: process.env.ANTHROPIC_API_KEY,
+});
+
+// To def Rate a limit to requests, Limiting Middleware
 const limiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
   max: 5, // ⛔ Limit each IP to 5 requests per minute
@@ -29,7 +130,7 @@ const limiter = rateLimit({
   headers: true, // Show rate limit info in response headers
 });
 
-// Define the structure of the response content
+//To def the structure of the resp content
 interface ContentBlock {
   text?: string;
   message?: string;
@@ -53,7 +154,8 @@ You are a music assistant creating playlists based on a user's activity, mood, a
 - Match the energy of the activity.
 - Reflect the user's mood.
 - Stay within the music genre preference but add variety.
-- Include a mix of popular hits and hidden gems.
+- Include a mix of popular hits.
+- Include only songs that might be on Deezer.
 - Return only the playlist as an array with an array for each song-artist pair eg: [["Technobron", "Slam"], ["Intruder", "The Chemical Brothers"]] no "" or '' around.
 - No introduction or final words.
 `;
@@ -99,8 +201,4 @@ You are a music assistant creating playlists based on a user's activity, mood, a
     console.error('Error fetching playlist:', error);
     res.status(500).json({ error: 'Failed to fetch playlist' });
   }
-});
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
 });

@@ -4,10 +4,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faCircleMinus} from "@fortawesome/free-solid-svg-icons";
 import { getPlaylistFromDjClaude } from "./ai";
 import ClipLoader from "react-spinners/ClipLoader";
+import { getCoverFromDeezerApi } from "./deezer";
+
+interface Song {
+  title: string;
+  artist: string;
+  cover: string;
+  url: string;
+}
 
 export default function Main() {
   const [list, setList] = React.useState<string[]>(["Techno", "Coding", "powerfull"]);
-  const [playlist, setPlaylist] = React.useState<[string, string][]>([]);
+  const [playlist, setPlaylist] = useState<Song[]>([]);
   const [hover, setHover] = React.useState<string | null>(null);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const focusPlaylistRef = React.useRef<HTMLDivElement>(null);
@@ -43,8 +51,9 @@ export default function Main() {
     setIsLoading(true);
     try {
       const playlist = await getPlaylistFromDjClaude(list);
-      console.log("Playlist fetched:", playlist);
-      setPlaylist(playlist); // Update playlistGenerated state
+      const songsWithCovers = await getCoverFromDeezerApi(playlist);
+      console.log("Final Playlist with Covers:", songsWithCovers);
+      setPlaylist(songsWithCovers); // ✅ Update state correctly
     } catch (error) {
       console.error("Error fetching playlist:", error);
     } finally {

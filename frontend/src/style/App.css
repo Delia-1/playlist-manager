@@ -281,7 +281,4 @@ form {
   transition: all 0.3s ease-in-out;
 }
 
-.theme-toggle:hover {
-  background-color: var(--text-color);
-  color: var(--bg-color);
-}
+
