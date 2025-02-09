@@ -6,6 +6,7 @@ import { getPlaylistFromDjClaude } from "./ai";
 import ClipLoader from "react-spinners/ClipLoader";
 import { getCoverFromDeezerApi } from "./deezer";
 
+
 interface Song {
   title: string;
   artist: string;
@@ -14,7 +15,7 @@ interface Song {
 }
 
 export default function Main() {
-  const [list, setList] = React.useState<string[]>(["Techno", "Coding", "powerfull"]);
+  const [list, setList] = React.useState<string[]>(["Rock", "Build app", "Motivated"]);
   const [playlist, setPlaylist] = useState<Song[]>([]);
   const [hover, setHover] = React.useState<string | null>(null);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
@@ -88,18 +89,20 @@ export default function Main() {
 
   return (
     <main className="main-content">
+      <div className="title">
       <h2 className="listPartText">What’s your <span className="spaned-words">sound</span> today?</h2>
       <h3 className="simple-text">Enter <span className="spaned-words">mood</span>, <span className="spaned-words">activity</span>, or <span className="spaned-words">genre</span>!</h3>
-      <div className="form-selec-container">
+
+
         <form onSubmit={addKeyword}>
-          <input className="keywords-input" type="text" placeholder="e.g. Musical" name="keyword" />
+          <input className="keywords-input" type="text" placeholder="e.g. ROCK" name="keyword" />
           <input className="button-submit" type="submit" value="+ KEYWORD" />
         </form>
 
         {keywordsList.length !== 0 && (
-          <section className="">
+
             <section className="listPart">
-                {keywordsList.length < 3 && <p >✨Please add at least 3 keywords </p>}
+                {keywordsList.length < 3 && <p >✨Please enter at least 3 keywords </p>}
               <ul className="listPartList">{keywordsList}</ul>
               {list.length > 2 && (
                 <>
@@ -109,14 +112,13 @@ export default function Main() {
                 {isLoading &&
                   <div className="loader-container">
                   <ClipLoader color="#ff5722" loading={isLoading} size={50} />
-                  <p className="loading-text">🎵 Crafting your sound...</p>
+                  <p className="loading-text">🎺Crafting your sound...</p>
                 </div>}
               </>
             )}
             </section>
-          </section>
         )}
-      </div>
+        </div>
 
       {playlist.length > 0 &&
       (<div ref={focusPlaylistRef}>

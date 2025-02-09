@@ -4,6 +4,8 @@ import { faDeezer } from "@fortawesome/free-brands-svg-icons";
 import { faLightbulb } from "@fortawesome/free-solid-svg-icons";
 import "../style/Header.css";
 import { useTheme } from "../ThemeContext";
+import DarkModeSwitch  from "./DarkModeCompo.tsx";
+
 
 export default function Header() {
 
@@ -12,12 +14,12 @@ export default function Header() {
     <nav className="header-container">
       <header>
 
+
+
         <FontAwesomeIcon className="ust-icon" icon={faDeezer} />
         <h3 className="header-title">Dj Claude</h3>
       </header>
-        <button onClick={toggleDarkMode} className="theme-toggle">
-        {darkMode ? <FontAwesomeIcon icon={faLightbulb} style={{color: "#FFD43B",}} /> : <FontAwesomeIcon icon={faLightbulb} />}
-      </button>
+      <DarkModeSwitch isDarkMode={darkMode} toggleDarkMode={toggleDarkMode} /> {/* Fixed usage */}
     </nav>
   );
 }

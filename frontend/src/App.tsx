@@ -10,9 +10,8 @@ function App() {
   return (
     <div className="app">
       <Header />
-      <nav className="stupid-nav">
+
         <Main />
-      </nav>
       <Footer />
     </div>
   );

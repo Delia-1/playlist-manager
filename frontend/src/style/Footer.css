@@ -7,7 +7,7 @@
   height: 60px;
   padding: 0 3rem;
   color: var(--bg-color);
-  margin: 0; /* Removes any margin */
+  margin-top: auto;
   box-sizing: border-box; /* Includes padding in width calculation */
   left: 0px;
   bottom: 0px;
@@ -16,9 +16,10 @@
 .footer-links {
   display: flex;
   align-items: center;
+  margin: 20px;
 }
 .footer-links a {
-  color: var(--bg-color);
+  color: var(--input-text-color);
   opacity: 0.75;
   text-decoration: none;
   font-size: 1.5rem;
