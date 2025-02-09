@@ -2,7 +2,7 @@ import React from 'react';
 import {createContext, useContext, useState, ReactNode} from 'react';
 
 
-//Typage de la valeur par défaut
+//Type of the default valueof the context
 interface ThemeContextType {
   darkMode: boolean;
   toggleDarkMode: () => void;
@@ -28,5 +28,5 @@ export const useTheme = () => {
   if (!context) {
     throw new Error("useTheme must be used within a ThemeProvider");
   }
-  return context; 
+  return context;
 }

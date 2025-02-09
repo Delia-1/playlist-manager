@@ -1,12 +1,12 @@
-import React, { useEffect, useRef, useState, FormEvent } from "react";
+import React, { useState, useEffect, FormEvent } from "react";
 import PlaylistCompo from "./PlaylistCompo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faCircleMinus} from "@fortawesome/free-solid-svg-icons";
-import { getPlaylistFromDjClaude } from "./ai";
+import { getPlaylistFromDjClaude } from "../api-handlers/ai";
 import ClipLoader from "react-spinners/ClipLoader";
-import { getCoverFromDeezerApi } from "./deezer";
+import { getCoverFromDeezerApi } from "../api-handlers/deezer";
 
-
+// DEF TYPE FINAL OBJ I RETRIEVE
 interface Song {
   title: string;
   artist: string;
@@ -19,6 +19,7 @@ export default function Main() {
   const [playlist, setPlaylist] = useState<Song[]>([]);
   const [hover, setHover] = React.useState<string | null>(null);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
+
   const focusPlaylistRef = React.useRef<HTMLDivElement>(null);
 
   // handle the form submission and add a keyword to the list
@@ -71,59 +72,61 @@ export default function Main() {
 
   // map the list of keywords to a list of JSX elements
   const keywordsList = list.map((item, index) => (
-    <div className="div-list-cancel" key={index}>
-              <div className="icon">
-          <FontAwesomeIcon
-        onClick={() => handleCancelItem(item)}
-        onMouseEnter={() => toggleBounce(item)}
-        onMouseLeave={removeBounce}
-        icon={faCircleMinus}
-        bounce={hover === item}
-      />
-          </div>
-      <li className="listPartItem">{item}
-      </li>
-
-    </div>
+    <div className="keywords-added" key={index}>
+      <div >
+        <FontAwesomeIcon
+          onClick={() => handleCancelItem(item)}
+          onMouseEnter={() => toggleBounce(item)}
+          onMouseLeave={removeBounce}
+          icon={faCircleMinus}
+          bounce={hover === item}
+        />
+      </div>
+      <li className="li-keyword">{item}</li>
+      </div>
   ));
 
   return (
     <main className="main-content">
-      <div className="title">
-      <h2 className="listPartText">What’s your <span className="spaned-words">sound</span> today?</h2>
-      <h3 className="simple-text">Enter <span className="spaned-words">mood</span>, <span className="spaned-words">activity</span>, or <span className="spaned-words">genre</span>!</h3>
+      <div className="main-container">
+      <h2 className="listPartText">What’s your <span className="colored-spaned-words">sound</span> today?</h2>
+      <h3 className="simple-text">Enter
+        <span className="colored-spaned-words"> mood</span>,
+        <span className="colored-spaned-words"> activity</span>, or
+        <span className="colored-spaned-words"> genre</span>!
+      </h3>
 
-
-        <form onSubmit={addKeyword}>
-          <input className="keywords-input" type="text" placeholder="e.g. ROCK" name="keyword" />
-          <input className="button-submit" type="submit" value="+ KEYWORD" />
-        </form>
+      <form onSubmit={addKeyword}>
+        <input className="keywords-input" type="text" placeholder="e.g. ROCK" name="keyword" />
+        <input className="button-submit" type="submit" value="+ KEYWORD" />
+      </form>
 
         {keywordsList.length !== 0 && (
-
-            <section className="listPart">
-                {keywordsList.length < 3 && <p >✨Please enter at least 3 keywords </p>}
-              <ul className="listPartList">{keywordsList}</ul>
+          <section className="listPart">
+            {keywordsList.length < 3 &&
+              <p >✨Please enter at least 3 keywords </p>}
+            <ul className="listPartList">{keywordsList}</ul>
               {list.length > 2 && (
                 <>
-                <button onClick={togglePlaylist} className="button-submit">
-                  Generate Playlist
-                </button>
-                {isLoading &&
-                  <div className="loader-container">
-                  <ClipLoader color="#ff5722" loading={isLoading} size={50} />
-                  <p className="loading-text">🎺Crafting your sound...</p>
-                </div>}
-              </>
-            )}
-            </section>
+                  <button onClick={togglePlaylist} className="button-submit">
+                    Generate Playlist
+                  </button>
+                    {isLoading &&
+                      <div className="loader-container">
+                        <ClipLoader color="#ff5722" loading={isLoading} size={50} />
+                        <p className="loading-text">🎺Crafting your sound...</p>
+                      </div>
+                    }
+                </>
+              )}
+          </section>
         )}
         </div>
 
       {playlist.length > 0 &&
-      (<div ref={focusPlaylistRef}>
-        <PlaylistCompo playlist={playlist} />
-      </div>
+      ( <div ref={focusPlaylistRef}>
+          <PlaylistCompo playlist={playlist} />
+        </div>
     )}
     </main>
   );

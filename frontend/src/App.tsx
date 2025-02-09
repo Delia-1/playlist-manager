@@ -5,13 +5,11 @@ import Main from "./components/Main";
 import Footer from "./components/Footer";
 
 function App() {
-  console.log(import.meta.env.VITE_BACKEND_URL);
 
   return (
     <div className="app">
       <Header />
-
-        <Main />
+      <Main />
       <Footer />
     </div>
   );

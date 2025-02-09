@@ -13,9 +13,7 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Enable CORS
 app.use(cors());
-
 app.use(express.json());
 
 // GRAPHQL PART!!!!
@@ -31,6 +29,7 @@ const SongType = new GraphQLObjectType({
   }
 })
 
+// DEEZER REPONSE TYPE DEF
 interface DeezerResponse {
   data: {
     album: {
@@ -40,6 +39,8 @@ interface DeezerResponse {
   }[];
 }
 
+
+// ENFORCE TYPE CHECKING
 function isDeezerResponse(data: any): data is DeezerResponse {
   return (
     data &&
@@ -48,7 +49,7 @@ function isDeezerResponse(data: any): data is DeezerResponse {
   );
 }
 
-
+// GRAPHQL QUERY
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
@@ -98,10 +99,12 @@ const RootQuery = new GraphQLObjectType({
   },
 });
 
+// To def the Schema
 const schema = new GraphQLSchema({
   query: RootQuery,
 });
 
+// CONNECTION TO API
 const server = new ApolloServer<BaseContext>({
   schema,
 });
@@ -116,13 +119,18 @@ const server = new ApolloServer<BaseContext>({
  });
 })();
 
+
+
+
+
+
 // ANTHROPIC CALLS
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 });
 
-// To def Rate a limit to requests, Limiting Middleware
+// DEF LILMITER
 const limiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
   max: 5, // ⛔ Limit each IP to 5 requests per minute
@@ -130,7 +138,7 @@ const limiter = rateLimit({
   headers: true, // Show rate limit info in response headers
 });
 
-//To def the structure of the resp content
+//DEF STRUCTURE OF API RESPONSE
 interface ContentBlock {
   text?: string;
   message?: string;
@@ -140,7 +148,6 @@ interface ApiResponse {
   content: ContentBlock[];
 }
 
-// ✅ Apply rate limiting **ONLY** to the `/get-recipe` route
 app.post('/', limiter, async (req: Request, res: Response): Promise<void> => {
   const { keywords } = req.body;
 
@@ -173,7 +180,6 @@ You are a music assistant creating playlists based on a user's activity, mood, a
       ],
     });
 
-    // Assuming msg.content is an array of objects, find the correct property
     const firstContent = msg.content[0] as ContentBlock;
 
     let playlistString = '';

@@ -1,68 +1,112 @@
-/* :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-/* body {
+/* GENERAL */
+html,
+body {
   margin: 0;
+  padding: 0;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+  height: 100vh;
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-} */
-
-/* h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  flex-direction: column;
+  font-family: "cabin", sans-serif;
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+:root {
+  --bg-color: #f9f9f9e4;
+  --bg-playlist:#26bce92d;
+  --text-color: #121212;
+  --primary-color: #bb3906;
+  --orange-deezer: #da3927;
+  --white-color: #ffffff;
+  --secondary-color: #05295e;
+  --highlight-color: #c1292e;
+  --input-bg: #ffffff;
+  --header-footer-deezer: #a238ff;
+  --input-text: #26bce9;
+  --button-bg-clear:#a238ff;
+  --button-bg-dark: #720bcc;
+  --box-shadow-1: rgba(0, 0, 0, 0.1);
+  --box-shadow-2: rgba(0, 0, 0, 0.15);
+  --box-shadow-3: rgba(0, 0, 0, 0.2);
+  --box-shadow-inner: none;
+
+  --set-box-shadow:
+    inset 3px 3px 6px var(--box-shadow-1),  /* Soft inner glow */
+    inset -3px -3px 6px var(--box-shadow-3), /* Subtle depth effect */
+    2px 2px 8px var(--box-shadow-3);
+  --set-bg-tiles: linear-gradient(to bottom, var(--orange-deezer), rgba(255, 255, 255, 0.1));
+}
+
+ /* DARK MODE VARS */
+.dark-mode {
+  --bg-color: #121212;
+  --bg-playlist:#292c2e73;
+  --text-color: #f9f9f9e4;
+  --primary-color: #3a85f3;
+  --orange-deezer: #3a85f3;
+  --secondary-color: #1c3d5a;
+  --highlight-color: #ff6161;
+  --input-bg: #dad9d9;
+  --header-footer-deezer: #8806fa;
+  --input-text: #8806fa;
+  --button-bg-clear:#96f9f3;
+  --button-bg-dark: #26bce9;
+  --box-shadow-1: rgba(255, 255, 255, 0.08);  /* Soft outer glow */
+  --box-shadow-2: rgba(255, 255, 255, 0.2);   /* Medium outer glow */
+  --box-shadow-3: rgba(255, 255, 255, 0.35); /* Strongest outer glow */
+  --box-shadow-inner: rgba(255, 255, 255, 0.15); /* Soft glow inside */
+  --set-box-shadow:
+    inset 2px 2px 5px var(--box-shadow-2), /* Slightly deeper inner glow */
+    inset -2px -2px 5px var(--box-shadow-3), /* Balanced depth */
+    4px 5px 6px var(--box-shadow-3), /* Stronger outer shadow */
+    -2px -2px 6px rgba(0, 0, 0, 0.7); /* Darker contrast */
+  --set-gb-tiles: linear-gradient(to bottom, var(--orange-deezer), var(--secondary-color));
+}
+
+p {
+  color: var(--text-color);
+  font-size: 0.9rem;
+}
+
+.colored-spaned-words {
+  color: var(--button-bg-clear);
+  font-style: italic;
+}
+
+.simple-text{
+  color: var(--text-color) ;
+  font-family: "cabin", sans-serif;
+  font-size: 2.25rem;
+  margin: 1rem;
+}
+
+@media screen and (max-width: 600px) {
+  .simple-text{
+    color: var(--text-color) ;
+    font-size: 1.5rem;
+  }
+}
+
+
+.theme-toggle {
+  background: none;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--text-color);
+  padding: 8px;
+  font-size: 1rem;
   cursor: pointer;
-  transition: border-color 0.25s;
+  border-radius: 50%;
+  transition: all 0.3s ease-in-out;
 }
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-} */
