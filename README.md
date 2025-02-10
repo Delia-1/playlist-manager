@@ -1,16 +1,18 @@
   🎵 Playlist Manager
-Playlist Manager is a web application that allows users to generate and music playlists with AI-powered recommendations. The project is built using TypeScript, React, Express, and GraphQL, with integration for Deezer to fetch music data.
+  
+Playlist Manager is a web application that allows users to generate music playlists with AI-powered recommendations. The project is built using Node.js , express, TypeScript, React, Vite and GraphQL, with integration for Deezer to fetch music data.
 
   🚀 Technologies Used
-📌 Frontend (React + TypeScript)
-React – UI library for building components.
+  
+📌 Frontend (React + Vite)
+Vite- ease the front end building 
 TypeScript – Ensures type safety and better development experience.
 React Context API – Manages global state, including dark mode.
 React Spinners – Displays a loading animation when fetching playlists.
 CSS Modules – Handles component styling.
 
 📌 Backend (Node.js + Express + GraphQL)
-Express.js – Manages API endpoints and handles server logic.
+Express.js – Manages API endpoints and handles server logic for Ia reqs
 GraphQL + Apollo Server – Fetches and serves playlist data efficiently.
 Deezer API – Retrieves song data, including covers and streaming links.
 Express Rate Limit – Prevents excessive API requests.
@@ -45,10 +47,8 @@ Implemented Apollo resolvers for playlist queries.
 Updated PlaylistCompo to handle new data structure.
 
 
-  📜 License
-This project is licensed under the MIT License.
 
 🤝 Contributing
 Feel free to contribute by submitting pull requests or opening issues!
 
-🚀 Enjoy the music! 🎶
+🚀Thank your for your interest! Enjoy the music! 🎶
