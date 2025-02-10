@@ -84,19 +84,6 @@ p {
   font-style: italic;
 }
 
-.simple-text{
-  color: var(--text-color) ;
-  font-family: "cabin", sans-serif;
-  font-size: 2.25rem;
-  margin: 1rem;
-}
-
-@media screen and (max-width: 600px) {
-  .simple-text{
-    color: var(--text-color) ;
-    font-size: 1.5rem;
-  }
-}
 
 
 .theme-toggle {

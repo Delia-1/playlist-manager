@@ -89,10 +89,11 @@ export default function Main() {
   return (
     <main className="main-content">
       <div className="main-container">
-      <h2 className="listPartText">What’s your <span className="colored-spaned-words">sound</span> today?</h2>
+      <h2 className="listPartText">What’s your
+       <span className="colored-spaned-words"> sound</span> today?</h2>
       <h3 className="simple-text">Enter
         <span className="colored-spaned-words"> mood</span>,
-        <span className="colored-spaned-words"> activity</span>, or
+        <span className="colored-spaned-words"> activity</span>, <span className="listPartTextOr">or</span>
         <span className="colored-spaned-words"> genre</span>!
       </h3>
 

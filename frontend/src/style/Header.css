@@ -1,6 +1,6 @@
 .header-container {
   top: 0;
-  left: 0; 
+  left: 0;
   z-index: 1000;
   display: flex;
   align-items: center;
@@ -37,8 +37,12 @@ header {
 }
 
 
-@media (max-width: 320px) {
+@media (max-width: 340px) {
   .header-title {
     font-size: 2rem;
+  }
+
+  .header-container {
+    height: 4rem;
   }
 }

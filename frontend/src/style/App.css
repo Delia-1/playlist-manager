@@ -87,7 +87,7 @@ form {
 }
 
 /* RESPONSIVE FORM */
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 1065px) {
   .main-container {
     display: inline-table;
     padding: 1rem 0rem;
@@ -113,13 +113,17 @@ form {
 /* DISPLAY OF THE KEYWORDS */
 
 .listPartText {
-  position: relative;
-  right: 12rem;
-  top: 0rem;
+  /* right: 20rem; */
   font-size: 3rem;
   z-index: 1;
   color: var(--text-color);
-  margin: 0 0 0 2rem;  ;
+  position: relative;
+  margin: 0 0;
+}
+.simple-text{
+  color: var(--text-color);
+  font-size: 2.25rem;
+  margin: 1rem 2rem;
 }
 
 
@@ -177,29 +181,14 @@ form {
 
 
 /* RESPONSIVE KEYWORDS */
-@media screen and (max-width: 600px) {
+@media screen and (min-width: 900px) and (max-width: 1065px) {
   .listPartText {
-    font-size: 1.7rem;
-    right: 1.3rem;
-  }
-  .listPart{
-    margin: 1rem 0.1rem 0 0.1rem;
+    font-size: 2.3rem;
+    padding-left: 1.3rem;
   }
 
-  .li-keyword{
-    width: 10px;
-    margin: 5px 10px;
-  }
 
-  .keywords-added {
-    width: calc(40% - 10px);
-    font-size: 1.2rem;
-    padding: 0.3rem 0.8rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
-}
-
 
 /* LOADING STATE */
 .loading-text {
@@ -214,4 +203,51 @@ form {
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
+}
+
+
+@media screen and (min-width: 318px) and (max-width: 599px){
+  .listPartText {
+    font-size: 2.2rem;
+    letter-spacing: 0.08rem;
+    right: 0rem;
+    padding-left: 1.4rem;
+  }
+
+
+   .simple-text{
+    color: var(--text-color) ;
+    font-size: 1.6rem;
+    padding-left: 1.4rem;
+    letter-spacing: 0.12rem;
+  }
+  .listPart{
+    margin: 0 0;
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 899px) {
+  .listPartText {
+    font-size: 2.4rem;
+    right: 0rem;
+    margin-left: 4rem;
+  }
+
+  .li-keyword{
+    width: 10px;
+    margin: 5px 10px;
+  }
+
+  .keywords-added {
+    width: calc(40% - 10px);
+    font-size: 1.2rem;
+    padding: 0.3rem 0.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .simple-text{
+    color: var(--text-color) ;
+    font-size: 1.8rem;
+    margin-left: 4rem;
+  }
 }

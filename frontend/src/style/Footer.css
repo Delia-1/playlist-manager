@@ -3,6 +3,8 @@
   align-items: center;
   justify-content: space-between;
   height: 60px;
+  width: 100%;
+  position: fixed;
   padding: 0 3rem;
   color: var(--bg-color);
   margin-top: auto;
@@ -28,22 +30,29 @@
 }
 
 .footer-copyright {
-  padding: 0.4rem 2rem 0.4rem 2rem;
+  padding: 0 0.4rem;
+  font-size: 1rem ;
 }
 
 
-@media (max-width: 400px) {
+@media (max-width: 340px  ) {
   .footer-container {
-    height: 40px;
-    padding: 0 0.4rem;
-    font-size: 0.7rem;
-  }
-}
-@media (max-width: 600px) {
-  .footer {
-    height: 50px;
-    padding: 0 0.5rem;
-    font-size: 0.7rem;
+    height: 2.5rem;
+    padding: 0 0.2rem;
+    font-size: 0.6rem;
   }
 
+  .footer-links a {
+    font-size: 1.2rem;
+  }
+  .footer-copyright {
+    font-size: 0.75rem ;
+  }
+
+}
+
+@media (max-width: 600px) {
+  .footer-container {
+    padding: 0 0.4rem;
+  }
 }

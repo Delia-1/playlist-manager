@@ -18,7 +18,7 @@ const PlaylistCompo: React.FC<PlaylistProps> = ({ playlist }) => {
 
   return (
     <section className="playlist-container" aria-live="polite">
-    <h3>DJ Claude <span className="colored-spaned-words">recommends:</span></h3>
+    <h3 className="dj-text">DJ Claude <span className="colored-spaned-words">recommends:</span></h3>
       {playlist && playlist.length > 0 ? (
           <ul className="playlist-list">
             {playlist.map((song, index) => (
