@@ -1,8 +1,8 @@
 export async function getPlaylistFromDjClaude(list: string[]): Promise<[string, string][]> {
-  const API_BASE_URL = import.meta.env.VITE_BACKEND_URL || ""; // Ensure dynamic backend URL
+  const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
   const response = await fetch(`${API_BASE_URL}/`, {
-    // Add /api to route
+    
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ keywords: list }),

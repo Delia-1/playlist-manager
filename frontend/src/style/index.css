@@ -5,8 +5,6 @@ body {
   padding: 0;
   width: 100%;
   box-sizing: border-box;
-  font-family: "Inter", sans-serif;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   font-family: "cabin", sans-serif;
@@ -54,7 +52,7 @@ body {
   --bg-playlist:#292c2e73;
   --text-color: #f9f9f9e4;
   --primary-color: #3a85f3;
-  --orange-deezer: #3a85f3;
+  --orange-deezer: #0857ce;
   --secondary-color: #1c3d5a;
   --highlight-color: #ff6161;
   --input-bg: #dad9d9;
@@ -86,14 +84,3 @@ p {
 
 
 
-.theme-toggle {
-  background: none;
-  width: 40px;
-  height: 40px;
-  border: 1px solid var(--text-color);
-  padding: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-  border-radius: 50%;
-  transition: all 0.3s ease-in-out;
-}

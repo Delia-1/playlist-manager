@@ -4,5 +4,4 @@ declare module '@fortawesome/free-brands-svg-icons' {
 
 declare module '@fortawesome/free-solid-svg-icons' {
   export const faCircleMinus: any;
-  export const faLightbulb: any;
 }

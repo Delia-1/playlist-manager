@@ -65,10 +65,10 @@ export default function Main() {
 
   // Dynamic anchor on the playlist
   useEffect(() => {
-    if (playlist.length > 0) {
+    if (!isLoading && playlist.length > 0) {
       focusPlaylistRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
     }
-  }, [playlist]);
+  }, [isLoading, playlist]);
 
   // map the list of keywords to a list of JSX elements
   const keywordsList = list.map((item, index) => (

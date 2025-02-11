@@ -1,6 +1,5 @@
- export async function getCoverFromDeezerApi (songs: [string, string][]) {
-  const API_BASE_URL = import.meta.env.VITE_BACKEND_URL || ""; // Ensure dynamic backend URL
-
+ export async function getCoverFromDeezerApi (lists: [string, string][]) {
+  const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
   const query = ` query getCoverFromDeezerApi($songTitles: [String!]!, $artists: [String!]!) {
     getCoverFromDeezerApi(songTitles: $songTitles, artists: $artists) {
     title
@@ -12,8 +11,8 @@
   `;
 
   const variables = {
-    songTitles:songs.map(([title, _artist]) => title),
-    artists: songs.map(([_title, artist]) => artist),
+    songTitles:lists.map(([title, _artist]) => title),
+    artists: lists.map(([_title, artist]) => artist),
   };
 
   const deezerResponse = await fetch (`${API_BASE_URL}/graphql`, {
@@ -27,7 +26,7 @@
 
   }
 
-  const data = await deezerResponse.json();
-  console.log("Deezer response🎵:", data)
-  return data.data.getCoverFromDeezerApi;
+  const responseData = await deezerResponse.json();
+  console.log("Deezer response🎵:", responseData)
+  return responseData.data.getCoverFromDeezerApi;
 }
