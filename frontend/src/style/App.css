@@ -15,7 +15,7 @@
   flex: 1;
   width: 100%;
   background-color: var(--bg-color);
-  padding-bottom: 60px;
+  /* padding-bottom: 60px; */
 }
 
 .main-container {
@@ -144,7 +144,6 @@ form {
 }
 
 .keywords-added {
-  width: calc(25% - 10px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -215,17 +214,37 @@ form {
     padding-left: 1.4rem;
   }
 
+  .keywords-added {
+    font-weight: 200;
+    font-size: 1.3rem;
+    color: var(--text-color);
+    min-width: min-content;
+    max-width: 100%;
+    white-space: nowrap;
+    height: min-content;
+  }
+  .li-keyword {
+    font-size: 1.3rem;
+    margin: 0.5rem 0.6rem;
+  }
+
 
    .simple-text{
     color: var(--text-color) ;
     font-size: 1.6rem;
     padding-left: 1.4rem;
     letter-spacing: 0.12rem;
+    margin: 0.8rem 0;
   }
   .listPart{
     margin: 0 0;
   }
+
+  .listPartList {
+  margin: 1rem 0;
+  }
 }
+
 @media screen and (min-width: 600px) and (max-width: 899px) {
   .listPartText {
     font-size: 2.4rem;
