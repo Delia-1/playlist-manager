@@ -8,11 +8,17 @@ This project generates playlists based on user mood, activity, or music preferen
   🚀 Features 🚀
 
 🔹 Core Functionality
+
 🎼 AI-generated playlists – Uses Anthropic's API to create music suggestions based on keywords.
+
 📡 Deezer API integration (GraphQL) – Retrieves song cover images and direct links for playback.
+
 🌙 Dark Mode – Fully responsive UI with a theme switcher.
+
 🔄 Dynamic scrolling – Automatically focuses on the generated playlist using useEffect & useRef.
+
 ⚡ Real-time feedback – Loading spinner when fetching playlists.
+
 🎨 UI & UX enhancements – Clean design with MUI for the dark mode toggle, refined details crafted with pure CSS.
 
 
