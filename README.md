@@ -25,7 +25,7 @@ This project generates playlists based on user mood, activity, or music preferen
 🔹 Technical Stack
 
   Backend (Node.js + Express + GraphQL)
-  
+
 -REST API call to Anthropic AI (Claude- AI (dj) assistant ) to generate song recommendations.
 
 -GraphQL API (Apollo Server) + Deezer API to fetch album covers & music streaming links.
@@ -34,18 +34,18 @@ This project generates playlists based on user mood, activity, or music preferen
 
 -Rate-limiting with express-rate-limit to prevent Anthropic API over-use.
 
--CORS & dotenv for security and environment configuration.
+-Dotenv for security and environment configuration.
 
 
   Frontend (React + TypeScript + Vite)
-  
+
 -TypeScript for better type safety and scalability.
 
 -React hooks:
   useState & useEffect for state management.
   useRef for smooth scrolling to the generated playlist.
   useContext for Dark Mode management.
-  
+
 -Apollo Client cache to optimize GraphQL API calls.
 -React Spinner for improved user feedback.
 
