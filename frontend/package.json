@@ -10,7 +10,8 @@
     "start": "vite preview",
     "lint": "eslint",
     "format": "prettier --write .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.33.1",
