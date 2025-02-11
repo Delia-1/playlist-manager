@@ -23,38 +23,60 @@ This project generates playlists based on user mood, activity, or music preferen
 
 
 🔹 Technical Stack
+
   Backend (Node.js + Express + GraphQL)
+  
 -REST API call to Anthropic AI (Claude- AI (dj) assistant ) to generate song recommendations.
+
 -GraphQL API (Apollo Server) + Deezer API to fetch album covers & music streaming links.
+
 -Express.js for the backend server.
--Rate-limiting with express-rate-limit to prevent Anthropic API overuse.
+
+-Rate-limiting with express-rate-limit to prevent Anthropic API over-use.
+
 -CORS & dotenv for security and environment configuration.
 
+
   Frontend (React + TypeScript + Vite)
+  
 -TypeScript for better type safety and scalability.
+
 -React hooks:
   useState & useEffect for state management.
   useRef for smooth scrolling to the generated playlist.
   useContext for Dark Mode management.
+  
 -Apollo Client cache to optimize GraphQL API calls.
 -React Spinner for improved user feedback.
 
 
+
 🔹  UI & UX
+
 -Fully responsive (Mobile-first approach).
+
 -Dark Mode toggle for better accessibility.
+
 -Improved user experience with smooth transitions and error handling.
+
 
 
   📌 Possible Improvements 📌
 
 🔹 Performance & Optimizations
+
 Add Framer Motion animations (e.g., playlist entry, button effects).
+
 Optimize components with React.memo to reduce unnecessary re-renders.
+
 Lazy load heavier components for better performance.
+
 🔹 Data Persistence & Enhancements
+
 Save playlists to a database (PostgreSQL / MongoDb).
+
 Allow users to reload saved playlists.
+
 
 
 
@@ -64,7 +86,9 @@ Allow users to reload saved playlists.
 This project started as a refactor of the Recipe Generator app to evolve into a music recommendation platform. It showcases:
 
 -React, TypeScript & GraphQL knowledges.
+
 -API consumption (REST & GraphQL).
+
 -Frontend & backend architecture.
 
 🎯 Designed to align with Deezer’s core mission of delivering a seamless, personalized music experience.
