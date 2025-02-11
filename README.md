@@ -3,7 +3,7 @@ A personalized AI-powered music recommendation app.
 
 This project generates playlists based on user mood, activity, or music preference, using Anthropic AI to suggest songs and Deezer API (GraphQL & Apollo Server) to fetch album covers and streaming links.
 
-🔗 Live Demo: https://playlist-manager-front.vercel.app/
+🔗 Try it: https://playlist-manager-front.vercel.app/
 
   🚀 Features 🚀
 
