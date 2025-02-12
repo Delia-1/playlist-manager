@@ -35,12 +35,11 @@
   padding: 0.5rem;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.11);
-  border: 1px solid rgba(0, 0, 0, 0.08); /* Softer border */
+  border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow:
-    inset 1px 1px 3px rgba(0, 0, 0, 0.08), /* Reduced inner highlight */
-    inset -1px -1px 3px rgba(0, 0, 0, 0.1), /* Soft bottom shadow */
-    3px 3px 6px rgba(0, 0, 0, 0.15), /* Subtle depth */
-    -2px -2px 5px rgba(255, 255, 255, 0.2); /* Light reflection */
+    inset 1px 1px 3px rgba(0, 0, 0, 0.08),
+    inset -1px -1px 3px rgba(0, 0, 0, 0.1),
+    -2px -2px 5px rgba(255, 255, 255, 0.2);
   white-space: nowrap;
   transition: all 0.3s ease-in-out;
 }
@@ -88,7 +87,7 @@
 
 @media screen and (min-width: 200px) and (max-width: 375px) {
   .playlist-list {
-    grid-template-columns: 1fr; /* 1 per row on small screens */
+    grid-template-columns: 1fr;
   }
   .dj-text {
     font-size: 1.75rem;
@@ -101,9 +100,9 @@
 
 
 
-@media screen and (min-width: 320px) and (max-width: 599px){
+@media screen and (min-width: 320px) and (max-width: 700px){
   .playlist-list {
-    grid-template-columns: 1fr; /* 1 per row on small screens */
+    grid-template-columns: 1fr;
   }
 
   .container-song-link {
@@ -128,8 +127,14 @@
 }
 
 
-@media screen and (min-width: 900) and (max-width: 1023px) {
-  .playlist-container ul {
+@media screen and (min-width: 700px) and (max-width: 1023px) {
+  .playlist-list{
     grid-template-columns: repeat(2, 1fr); /* 2 per row on medium screens */
   }
+  .playlist-container {
+    padding: 0 0 ;
+    margin: 0 0 ;
+  }
+
+
 }

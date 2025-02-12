@@ -13,14 +13,15 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// A implementer avnt production!!
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-// GRAPHQL PART!!!!
+// GRAPHQL PART
 
-// To def GraphQL Schema
+// To type def GraphQL Schema
 const SongType = new GraphQLObjectType({
   name: 'Song',
   fields: {
@@ -31,7 +32,7 @@ const SongType = new GraphQLObjectType({
   }
 })
 
-// DEEZER REPONSE TYPE DEF
+// DEEZER REsPONSE TYPE CHECK
 interface DeezerResponse {
   data: {
     album: {
@@ -134,20 +135,16 @@ const anthropic = new Anthropic({
 
 // DEF LILMITER
 const limiter = rateLimit({
-  windowMs: 1 * 60 * 1000, // 1 minute
+  windowMs: 1 * 60 * 1000,
   max: 5, // ⛔ Limit each IP to 5 requests per minute
-  message: { error: 'Too many requests, please try again later.' }, // Response when limit is exceeded
-  headers: true, // Show rate limit info in response headers
+  message: { error: 'Too many requests, please try again later. 🤘' },
+  headers: true,
 });
 
 //DEF STRUCTURE OF API RESPONSE
 interface ContentBlock {
   text?: string;
   message?: string;
-}
-
-interface ApiResponse {
-  content: ContentBlock[];
 }
 
 app.post('/', limiter, async (req: Request, res: Response): Promise<void> => {
