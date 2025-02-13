@@ -17,7 +17,7 @@ interface Song {
 export default function Main() {
   const [list, setList] = React.useState<string[]>(["Rock", "Build app", "Motivated"]);
   const [playlist, setPlaylist] = useState<Song[]>([]);
-  const [hover, setHover] = React.useState<string | null>(null);
+  const [hover, setHover] = React.useState<number | null>(null);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   const focusPlaylistRef = React.useRef<HTMLDivElement>(null);
@@ -34,13 +34,13 @@ export default function Main() {
   }
 
   // handle the removal of a keyword from the list
-  function handleCancelItem(item: string) {
-    setList((prevList) => prevList.filter((element) => element !== item));
+  function handleCancelItem(index: number) {
+    setList((prevList) => prevList.filter((_, i) => i !== index));
   }
 
   // functions to handle the bounce effect when hovering over the trash icon
-  function toggleBounce(item: string) {
-    setHover(item);
+  function toggleBounce(index: number) {
+    setHover(index);
   }
 
   function removeBounce() {
@@ -74,13 +74,15 @@ export default function Main() {
   const keywordsList = list.map((item, index) => (
     <div className="keywords-added" key={index}>
       <div >
-        <FontAwesomeIcon
-          onClick={() => handleCancelItem(item)}
-          onMouseEnter={() => toggleBounce(item)}
+        <li>
+          <FontAwesomeIcon
+          onClick={() => handleCancelItem(index)}
+          onMouseEnter={() => toggleBounce(index)}
           onMouseLeave={removeBounce}
           icon={faCircleMinus}
-          bounce={hover === item}
-        />
+          bounce={hover === index}
+         />
+        </li>
       </div>
       <li className="li-keyword">{item}</li>
       </div>
