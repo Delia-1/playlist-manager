@@ -79,6 +79,72 @@ Allow users to reload saved playlists.
 
 
 
+🚀 Setup & Installation
+
+You will need an anthropic api key to set the environment variables
+https://console.anthropic.com/
+
+1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/Delia-1/playlist-manager.git
+cd playlist-manager
+```
+
+2️⃣ Backend Setup (API 🎵)
+Navigate to the api/ folder and install dependencies:
+
+```bash
+cd api
+npm install
+```
+
+Create a .env file in api/ and add your Anthropic API Key:
+
+```bash
+ANTHROPIC_API_KEY=your_anthropic_api_key_here
+```
+
+Start the development server, The API will be running on http://localhost:3000 :
+```bash
+npm run dev
+```
+
+3️⃣ Frontend Setup (React 🎨)
+
+Navigate to the frontend/ folder and install dependencies:
+```bash
+cd ../frontend
+npm install
+```
+Create a .env file in frontend/ and specify the backend URL:
+```bash
+VITE_BACKEND_URL=http://localhost:3000
+```
+
+Start the development server, the app will be running on http://localhost:5173:
+```bash
+npm run dev
+```
+Your localhost is running! 🚀
+
+4️⃣ Deploying on Vercel 🌍
+Backend (API) Deployment
+Navigate to the api/ folder and run:
+```bash
+vercel --prod
+```
+Add your Anthropic API Key in Vercel's project environment variables (VERCEL_ENV settings).
+
+
+Frontend Deployment
+Navigate to the frontend/ folder and run:
+```bash
+vercel --prod
+```
+Set the VITE_BACKEND_URL environment variable in Vercel to match the deployed API URL.
+
+The app is now deployed!
 
 
   💡 Why This Project? 💡
