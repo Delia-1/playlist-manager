@@ -29,6 +29,7 @@ const SongType = new GraphQLObjectType({
     artist:{type: GraphQLString},
     cover: {type: GraphQLString},
     url: {type: GraphQLString},
+    preview: {type: GraphQLString},
   }
 })
 
@@ -39,6 +40,7 @@ interface DeezerResponse {
       cover_medium: string;
     };
     link: string;
+    preview: string;
   }[];
 }
 
@@ -48,7 +50,10 @@ function isDeezerResponse(data: any): data is DeezerResponse {
   return (
     data &&
     Array.isArray(data.data) &&
-    data.data.every((item: any) => item.album && typeof item.album.cover_medium === 'string' && typeof item.link === 'string')
+    data.data.every((item: any) => item.album &&
+    typeof item.album.cover_medium === 'string' &&
+    typeof item.link === 'string' &&
+    typeof item.preview === 'string')
   );
 }
 
@@ -85,17 +90,18 @@ const RootQuery = new GraphQLObjectType({
                   artist,
                   cover: data.data[0].album.cover_medium,
                   url: data.data[0].link || "",
+                  preview: data.data[0].preview || "",
                 };
               } else {
-                return { title, artist, cover: "", url: "" };
+                return { title, artist, cover: "", url: "", preview: "" };
               }
             } catch (error) {
               console.error("Error fetching song cover:", error);
-              return { title, artist, cover: "", url: "" };
+              return { title, artist, cover: "", url: "" , preview: ""};
             }
           })
         );
-
+        console.log("Final GraphQL Response:", results);
         return results;
       },
     },

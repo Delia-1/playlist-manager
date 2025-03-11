@@ -6,6 +6,7 @@
     artist
     cover
     url
+    preview
     }
   }
   `;
@@ -14,6 +15,7 @@
     songTitles:lists.map(([title, _artist]) => title),
     artists: lists.map(([_title, artist]) => artist),
   };
+  console.log("Sending GraphQL Query:", JSON.stringify({ query, variables }, null, 2));
 
   const deezerResponse = await fetch (`${API_BASE_URL}/graphql`, {
     method: "POST",
@@ -27,6 +29,6 @@
   }
 
   const responseData = await deezerResponse.json();
-  console.log("Deezer response🎵:", responseData)
+  // console.log("Deezer response🎵:", responseData)
   return responseData.data.getCoverFromDeezerApi;
 }

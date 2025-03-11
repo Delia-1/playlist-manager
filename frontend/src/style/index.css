@@ -39,15 +39,28 @@ body {
   --box-shadow-3: rgba(0, 0, 0, 0.2);
   --box-shadow-inner: none;
 
+
   --set-box-shadow:
     inset 3px 3px 6px var(--box-shadow-1),  /* Soft inner glow */
     inset -3px -3px 6px var(--box-shadow-3), /* Subtle depth effect */
     2px 2px 8px var(--box-shadow-3);
   --set-bg-tiles: linear-gradient(to bottom, var(--orange-deezer), rgba(255, 255, 255, 0.1));
+
+
+  --card-backgroud: lightgray;
+  --card-box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+
+  /* --card-title: rgba(102, 100, 100, 0.911); */
 }
 
  /* DARK MODE VARS */
 .dark-mode {
+
+  --card-backgroud: rgb(71, 64, 64);
+  --card-box-shadow: 0 8px 32px 0 rgb(102, 109, 198);
+  /* --card-title: rgba(102, 100, 100, 0.911); */
+
+
   --bg-color: #121212;
   --bg-playlist:#292c2e73;
   --text-color: #f9f9f9e4;
@@ -81,6 +94,3 @@ p {
   color: var(--button-bg-clear);
   font-style: italic;
 }
-
-
-

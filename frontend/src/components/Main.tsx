@@ -12,6 +12,7 @@ interface Song {
   artist: string;
   cover: string;
   url: string;
+  preview: string;
 }
 
 export default function Main() {
@@ -124,6 +125,7 @@ export default function Main() {
               )}
           </section>
         )}
+
         </div>
 
       {playlist.length > 0 &&
