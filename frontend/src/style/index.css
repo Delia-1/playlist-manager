@@ -25,12 +25,14 @@ body {
   --bg-playlist:#26bce92d;
   --text-color: #121212;
   --primary-color: #bb3906;
-  --orange-deezer: #da3927;
+  /* --orange-deezer: #d21b079e; */
+  --orange-deezer: #f42c04;
+
   --white-color: #ffffff;
   --secondary-color: #05295e;
   --highlight-color: #c1292e;
   --input-bg: #ffffff;
-  --header-footer-deezer: #a238ff;
+  --header-footer-deezer: #b36af4;
   --input-text: #26bce9;
   --button-bg-clear:#a238ff;
   --button-bg-dark: #720bcc;
@@ -47,7 +49,7 @@ body {
   --set-bg-tiles: linear-gradient(to bottom, var(--orange-deezer), rgba(255, 255, 255, 0.1));
 
 
-  --card-backgroud: lightgray;
+  --card-backgroud: #a238ff30;
   --card-box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 
   /* --card-title: rgba(102, 100, 100, 0.911); */
@@ -65,7 +67,9 @@ body {
   --bg-playlist:#292c2e73;
   --text-color: #f9f9f9e4;
   --primary-color: #3a85f3;
-  --orange-deezer: #0857ce;
+  /* --orange-deezer: #0857ce; */
+  --orange-deezer: #07BEB8;
+
   --secondary-color: #1c3d5a;
   --highlight-color: #ff6161;
   --input-bg: #dad9d9;

@@ -146,13 +146,13 @@ form {
 
 }
 
-.li-keyword{
+/* .li-keyword{
   flex-grow: 1;
   min-width: fit-content;
   margin: 0.8rem 1rem;
-}
+} */
 
-.keywords-added {
+/* .keywords-added {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -176,7 +176,7 @@ form {
 .keywords-added:hover {
   transform: translateY(-2px);
   box-shadow: 4px 4px 8px var(--box-shadow-3);
-}
+} */
 
 .listPartList {
   list-style: none;
@@ -212,7 +212,7 @@ form {
     right: 0rem;
     padding-left: 0.8rem;
   }
-
+/*
   .keywords-added {
     font-weight: 200;
     font-size: 1.3rem;
@@ -225,7 +225,7 @@ form {
   .li-keyword {
     font-size: 1.3rem;
     margin: 0.5rem 0.6rem;
-  }
+  } */
 
 
    .simple-text{
@@ -250,7 +250,7 @@ form {
     right: 0rem;
     margin-left: 4rem;
   }
-
+/*
   .li-keyword{
     width: 10px;
     margin: 5px 10px;
@@ -262,7 +262,7 @@ form {
     padding: 0.3rem 0.8rem;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
+  } */
 
   .simple-text{
     color: var(--text-color) ;
@@ -284,4 +284,77 @@ form {
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
+}
+
+
+
+.buttonUiverse {
+  --main-focus: #0d66c5;
+  /* --font-color: #323232; */
+  --bg-color-sub: var(--orange-deezer);
+  --bg-color: #eee;
+  --main-color: #323232;
+  position: relative;
+  width: 170px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Align text to the start */
+  border: 2px solid var(--main-color);
+  box-shadow: 4px 4px var(--main-color);
+  background-color: var(--bg-color);
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: 1.4rem;
+  /* color: var(--text-color); */
+  background: linear-gradient(to bottom, var(--orange-deezer), rgba(255, 255, 255, 0.1));
+}
+
+.buttonUiverse, .buttonUiverse__icon, .buttonUiverse__text {
+  transition: all 0.3s;
+  color: var(--text-color);
+
+}
+
+.buttonUiverse .buttonUiverse__text {
+  color: var(--font-color);
+  font-weight: 600;
+  font-family: "cabin", sans-serif;
+  text-align: left; /* Align text to the start */
+  padding-left: 10px; /* Add a small padding for spacing */
+}
+
+.buttonUiverse .buttonUiverse__icon {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 39px;
+  background-color: var(--bg-color-sub);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonUiverse .svg {
+  width: 20px;
+  fill: var(--main-color);
+}
+
+.buttonUiverse:hover {
+  background: var(--bg-color);
+}
+
+.buttonUiverse:hover .buttonUiverse__text {
+  color: transparent;
+}
+
+.buttonUiverse:hover .buttonUiverse__icon {
+  width: 168px;
+  transform: translateX(0);
+}
+
+.buttonUiverse:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0px 0px var(--main-color);
 }

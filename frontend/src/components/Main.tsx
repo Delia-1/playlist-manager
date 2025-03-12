@@ -18,7 +18,7 @@ interface Song {
 export default function Main() {
   const [list, setList] = React.useState<string[]>(["Rock", "Build app", "Motivated"]);
   const [playlist, setPlaylist] = useState<Song[]>([]);
-  const [hover, setHover] = React.useState<number | null>(null);
+  const [hover, setHover] = React.useState<Record<number, boolean>>({});
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   const focusPlaylistRef = React.useRef<HTMLDivElement>(null);
@@ -40,13 +40,12 @@ export default function Main() {
   }
 
   // functions to handle the bounce effect when hovering over the trash icon
-  function toggleBounce(index: number) {
-    setHover(index);
-  }
-
-  function removeBounce() {
-    setHover(null);
-  }
+  // function toggleBounce(index: number, isHovering: boolean) {
+  //   setHover((prev) => ({
+  //     ...prev,
+  //     [index]: isHovering,
+  //   }));
+  // }
 
   // async function to call the AI function to get a palyslist from the list of keywords
   // handle the state for the loader
@@ -73,21 +72,41 @@ export default function Main() {
 
   // map the list of keywords to a list of JSX elements
   const keywordsList = list.map((item, index) => (
-    <div className="keywords-added" key={index}>
-      <div >
+    // <div className="keywords-added" key={index}>
+    < li key={index}>
+      {/* <div >
         <li>
-          <FontAwesomeIcon
+        <FontAwesomeIcon
           onClick={() => handleCancelItem(index)}
-          onMouseEnter={() => toggleBounce(index)}
-          onMouseLeave={removeBounce}
+          onMouseEnter={() => toggleBounce(index, true)}
+          onMouseLeave={() => toggleBounce(index, false)}
           icon={faCircleMinus}
-          bounce={hover === index}
-         />
+          bounce={hover[index]} // Dynamically apply bounce
+        />
         </li>
       </div>
-      <li className="li-keyword">{item}</li>
-      </div>
+      <li className="li-keyword">{item}</li> */}
+
+
+
+<button type="button" className="buttonUiverse">
+  <span className="buttonUiverse__text">{item}</span>
+  <span className="buttonUiverse__icon" onClick={() => handleCancelItem(index)}>
+    <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" className="svg">
+      <title>Delete Icon</title>
+      <path style={{ fill: "none", stroke: "#323232", strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 32 }} d="M112,112l20,320c.95,18.49,14.4,32,32,32H348c17.67,0,30.87-13.51,32-32l20-320" />
+      <line x1="80" y1="112" x2="432" y2="112" style={{ stroke: "#323232", strokeLinecap: "round", strokeMiterlimit: 10, strokeWidth: 32 }} />
+      <path style={{ fill: "none", stroke: "#323232", strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 32 }} d="M192,112V72h0a23.93,23.93,0,0,1,24-24h80a23.93,23.93,0,0,1,24,24h0v40" />
+      <line x1="256" y1="176" x2="256" y2="400" style={{ fill: "none", stroke: "#323232", strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 32 }} />
+      <line x1="184" y1="176" x2="192" y2="400" style={{ fill: "none", stroke: "#323232", strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 32 }} />
+      <line x1="328" y1="176" x2="320" y2="400" style={{ fill: "none", stroke: "#323232", strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 32 }} />
+    </svg>
+  </span>
+
+</button>
+      </li>
   ));
+
 
   return (
     <main className="main-content">
@@ -115,6 +134,8 @@ export default function Main() {
                   <button onClick={togglePlaylist} className="button-submit">
                     Generate Playlist
                   </button>
+
+
                     {isLoading &&
                       <div className="loader-container">
                         <ClipLoader color="#ff5722" loading={isLoading} size={50} />
